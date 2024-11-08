@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="false"
+    android:layout_marginStart="10dp"
+    app:layout_anchorGravity="center_horizontal"
+    tools:context=".EditContactActivity">
+
+    <ImageView
+        android:id="@+id/logoView"
+        android:layout_width="169dp"
+        android:layout_height="163dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:contentDescription="Logo creado Por Ricardo Flores"
+        app:srcCompat="@drawable/vector_ugb" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoView"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="5dp"
+        android:text="Introduzca El Nombre Completo" />
+
+    <EditText
+        android:id="@+id/txtEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Nombre Completo"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#0C0C0C"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEditName"
+        android:layout_marginTop="25dp"
+        android:autofillHints=""
+        android:importantForAutofill="no"
+        android:paddingLeft="5dp"
+        android:text="Introduzca El Número"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/txtEditPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="0000-0000"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textColorHint="#0C0C0C"
+        tools:ignore="VisualLintTextFieldSize" />
+
+    <Button
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_below="@+id/txtEditPhone"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="31dp"
+        android:text="Guardar Cambios" />
+
+    <Button
+        android:id="@+id/btnRegresar"
+        android:layout_width="wrap_content"
+        android:layout_height="59dp"
+        android:layout_below="@+id/txtEditPhone"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="145dp"
+        android:text="Regresar" />
+
+    <Button
+        android:id="@+id/btnLlamar"
+        android:layout_width="116dp"
+        android:layout_height="59dp"
+        android:layout_below="@+id/txtEditPhone"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="17dp"
+        android:text="Llamar" />
+</RelativeLayout>

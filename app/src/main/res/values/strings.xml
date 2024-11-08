@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MiAgenda</string>
+    <string name="eliminar_contacto">Eliminar Contacto</string>
+    <string name="modificar_contacto">Modificar Contacto</string>
+</resources>
