@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permiso para enviar notificaciones -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
     <!-- Permiso para realizar llamadas -->
     <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- Declarar que la aplicación puede utilizar la funcionalidad de telefonía -->
     <uses-feature
@@ -37,11 +40,10 @@
             android:name=".EditContactActivity"
             android:exported="false" />
 
-        <!-- Firebase messaging service -->
         <service
             android:name=".Clases.MyFirebaseService"
             android:exported="true"
-            android:permission="ALL">
+            android:permission="All">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

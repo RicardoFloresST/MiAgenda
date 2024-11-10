@@ -1,6 +1,6 @@
 package com.isnp171322.miagenda.Clases;
 
-import android.annotation.SuppressLint;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,7 +15,6 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.isnp171322.miagenda.R;
 
-@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class MyFirebaseService extends FirebaseMessagingService {
 
     private static final String TAG = "MisNotificacionesFCM";
