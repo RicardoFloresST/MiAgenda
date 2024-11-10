@@ -42,8 +42,7 @@
 
         <service
             android:name=".Clases.MyFirebaseService"
-            android:exported="true"
-            android:permission="All">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

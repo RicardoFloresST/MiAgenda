@@ -3,6 +3,7 @@ package com.isnp171322.miagenda;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultCallback;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         objConexion = new ConexionSQLite(MainActivity.this, NOMBRE_BASE_DATOS, null, 2);
 
+        FirebaseApp.initializeApp(this);
+        askNotificationPermission();
+
         botonAgregar = findViewById(R.id.btnAgregar);
         botonBuscar = findViewById(R.id.btnBuscar);
         etBuscar = findViewById(R.id.txtBuscar);
@@ -94,7 +98,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void askNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.POST_NOTIFICATIONS)!= PackageManager.PERMISSION_DENIED){
+                activityResultLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
 
         }
     }
