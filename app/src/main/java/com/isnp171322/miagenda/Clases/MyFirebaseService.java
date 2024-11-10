@@ -23,12 +23,6 @@ public class MyFirebaseService extends FirebaseMessagingService {
         super.onNewToken(token);
         Log.d(TAG, "Nuevo token de FCM: " + token);
 
-
-        sendTokenToServer(token);
-    }
-
-    private void sendTokenToServer(String token) {
-
     }
 
     @Override
