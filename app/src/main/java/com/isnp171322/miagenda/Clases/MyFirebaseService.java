@@ -1,6 +1,7 @@
 package com.isnp171322.miagenda.Clases;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
@@ -55,12 +56,13 @@ public class MyFirebaseService extends FirebaseMessagingService {
         }
 
         // Código para construir y enviar la notificación
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+        Notification notification = new  NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)
                 .setContentText(body)
-                .setSmallIcon(R.drawable.ic_notification)  // Cambia "ic_notification" por el icono que prefieras
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .build();
 
-        notificationManager.notify(0, notificationBuilder.build());
+        notificationManager.notify(0, notification);
     }
 }
