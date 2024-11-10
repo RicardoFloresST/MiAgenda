@@ -1,6 +1,5 @@
 package com.isnp171322.miagenda.Clases;
 
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,7 +9,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
-
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.isnp171322.miagenda.R;
@@ -18,25 +16,35 @@ import com.isnp171322.miagenda.R;
 public class MyFirebaseService extends FirebaseMessagingService {
 
     private static final String TAG = "MisNotificacionesFCM";
-    private static final String CHANNEL_ID = "MyAgenda_Chanenel";
-
+    private static final String CHANNEL_ID = "MyAgenda_Channel";
 
     @Override
-    public void  onMessageReceived(@NonNull RemoteMessage message){
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        Log.d(TAG, "Nuevo token de FCM: " + token);
+
+
+        sendTokenToServer(token);
+    }
+
+    private void sendTokenToServer(String token) {
+
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage message) {
         Log.d(TAG, "From: " + message.getFrom());
 
         // Check if message contains a data payload.
         if (message.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + message.getData());
-
         }
 
         // Check if message contains a notification payload.
         if (message.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + message.getNotification().getBody());
-            sendNotification(message.getNotification().getTitle(),message.getNotification().getBody());
+            sendNotification(message.getNotification().getTitle(), message.getNotification().getBody());
         }
-
     }
 
     private void sendNotification(String title, String body) {
@@ -55,7 +63,7 @@ public class MyFirebaseService extends FirebaseMessagingService {
         }
 
         // Código para construir y enviar la notificación
-        Notification notification = new  NotificationCompat.Builder(this, CHANNEL_ID)
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setContentTitle(title)
                 .setContentText(body)
