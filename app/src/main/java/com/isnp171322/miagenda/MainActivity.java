@@ -2,8 +2,15 @@ package com.isnp171322.miagenda;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import android.Manifest;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ArrayAdapter;
@@ -15,9 +22,21 @@ import android.widget.Toast;
 import android.database.Cursor;
 import android.widget.PopupMenu;
 import java.util.ArrayList;
+
+import com.google.firebase.FirebaseApp;
 import com.isnp171322.miagenda.Clases.ConexionSQLite;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MisNotificacionesFCM";
+    private final ActivityResultLauncher<String> activityResultLauncher
+            = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
+        @Override
+        public void onActivityResult(Boolean o) {
+            if (o) {
+                Toast.makeText(MainActivity.this, "Permiso de notificacion concedido", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 
     ConexionSQLite objConexion;
     final String NOMBRE_BASE_DATOS = "miagenda";
@@ -41,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         botonAgregar.setOnClickListener(view -> {
             Intent ventana = new Intent(MainActivity.this, AddContactActivity.class);
             startActivity(ventana);
+            FirebaseApp.initializeApp(this);
+            askNotificationPermission();
+            
         });
 
         // Llenar lista inicial
@@ -69,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
             mostrarMenuOpciones(view, contactoCompleto);
             return true;
         });
+    }
+
+    private void askNotificationPermission() {
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.POST_NOTIFICATIONS)!= PackageManager.PERMISSION_DENIED){
+
+        }
     }
 
     @Override
