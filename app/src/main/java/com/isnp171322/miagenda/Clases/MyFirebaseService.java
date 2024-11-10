@@ -1,5 +1,6 @@
 package com.isnp171322.miagenda.Clases;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
@@ -13,6 +14,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.isnp171322.miagenda.R;
 
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class MyFirebaseService extends FirebaseMessagingService {
 
     private static final String TAG = "MisNotificacionesFCM";
@@ -59,6 +61,6 @@ public class MyFirebaseService extends FirebaseMessagingService {
                 .setSmallIcon(R.drawable.ic_notification)  // Cambia "ic_notification" por el icono que prefieras
                 .setAutoCancel(true);
 
-        notificationManager.notify(1, notificationBuilder.build());
+        notificationManager.notify(0, notificationBuilder.build());
     }
 }
