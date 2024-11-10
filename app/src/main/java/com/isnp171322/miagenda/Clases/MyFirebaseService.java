@@ -1,13 +1,17 @@
 package com.isnp171322.miagenda.Clases;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.isnp171322.miagenda.R;
 
 public class MyFirebaseService extends FirebaseMessagingService {
 
@@ -36,5 +40,25 @@ public class MyFirebaseService extends FirebaseMessagingService {
     private void sendNotification(String title, String body) {
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
 
+        // Verifica si la versión es Oreo (API 26) o superior
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Envio de notificaciones a clientes",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+
+            // Registra el canal con el NotificationManager
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Código para construir y enviar la notificación
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setSmallIcon(R.drawable.ic_notification)  // Cambia "ic_notification" por el icono que prefieras
+                .setAutoCancel(true);
+
+        notificationManager.notify(1, notificationBuilder.build());
     }
 }
