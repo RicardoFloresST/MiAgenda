@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import com.isnp171322.miagenda.Clases.ConexionSQLite;
 
 public class MainActivity extends AppCompatActivity {
+
     ConexionSQLite objConexion;
     final String NOMBRE_BASE_DATOS = "miagenda";
     Button botonAgregar, botonBuscar;
